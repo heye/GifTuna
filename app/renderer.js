@@ -64,6 +64,10 @@ app.controller('gifSettings',function($scope,$filter,$timeout,$rootScope){
       height:240,
       lock:true
     },
+    croptime:{
+      start_time: 0,
+      end_time:0
+    },
     fps:24,
     color: {
       stats_mode:"diff",
@@ -109,6 +113,12 @@ app.controller('gifSettings',function($scope,$filter,$timeout,$rootScope){
       protocol: 'file:',
       slashes: true
     }));
+  }
+  $scope.set_start = function(){
+    $scope.settings.croptime.start_time = $scope.frames.current;
+  }
+  $scope.set_end = function(){
+    $scope.settings.croptime.end_time = $scope.frames.current;
   }
   $scope.export = function(){
     var base = path.parse($scope.settings.file.input.path);

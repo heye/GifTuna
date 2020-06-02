@@ -3,12 +3,12 @@
   "version": "1.0.7",
   "description": "A modern cross-platform video to gif converter",
   "scripts": {
-    "postinstall":"npm --prefix ./app install ./app",
+    "postinstall": "npm --prefix ./app install ./app",
     "start": "electron ./app/",
     "build_mac": "electron-packager ./app GifTuna --ignore=.gitignore --platform=darwin --icon=./resources/logo-hires-v2.icns --out=./build/mac/ --overwrite",
     "build_win": "electron-packager ./app GifTuna --platform=win32 --icon=./resources/logo-hires-v2.iconset --out=./build/win/ --overwrite",
     "build_linux": "electron-packager ./app GifTuna --platform=linux --icon=./resources/logo-hires-v2-256x256@2x.png --out=./build/linux/ --overwrite",
-    "build_all":"npm run build_mac && npm run build_win && npm run build_linux"
+    "build_all": "npm run build_mac && npm run build_win && npm run build_linux"
   },
   "author": "brian@ndmweb.com (@dudewheresmycode)",
   "license": "MIT",

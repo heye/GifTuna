@@ -44,6 +44,15 @@
           </div>
         </div>
 
+        <div class="form-group" style="margin:20px;">
+            <a ng-click="set_start()" class="btn">Set Start Time</a>
+            <span ng-model="settings.croptime.start_time" >{{settings.croptime.start_time}}</span>
+        </div>
+        <div class="form-group" style="margin:20px;">
+            <a ng-click="set_end()" class="btn">Set End Time</a>
+            <span ng-model="settings.croptime.end_time" >{{settings.croptime.end_time}}</span>
+        </div>
+
         <!-- <h6>Color Options</h6> -->
         <h3 class="section-title">Dither Options</h3>
         <div class="form-group form-group-inline">

@@ -212,7 +212,7 @@ ipcMain.on('getThumbnail', (event, input, palette, time, settings) => {
   var diff_mode = settings.color.diff_mode ? settings.color.diff_mode : "rectangle";
   var diff_mode = settings.loop ? settings.loop : 0;
 
-  var vf = util.format("fps=%s,%s:flags=lanczos [x];[x][1:v]paletteuse=dither=%s:diff_mode=%s", fps, scaleCmd, dither, diff_mode, loop);
+  var vf = util.format("fps=%s,%s:flags=lanczos [x];[x][1:v]paletteuse=dither=%s:diff_mode=%s", fps, scaleCmd, dither, diff_mode);
   console.log(vf);
   if(ffmpeg_ps) ffmpeg_ps.kill();
   ffmpeg_ps = spawn(ffmpeg_path, [
@@ -256,10 +256,14 @@ ipcMain.on('exportGif', (event, input, output, palette, settings) => {
   var h = settings.dimensions.height || 240;
   var scaleCmd = "scale="+w+":"+h;
   var vf = util.format("fps=%s,%s:flags=lanczos [x];[x][1:v]paletteuse=dither=%s", fps, scaleCmd, dither);
+  var startTime = settings.croptime.start_time;
+  var endTime = settings.croptime.end_time;
 
   // var filters = util.format("fps=%s,%s:flags=lanczos[x];[x][1:v]paletteuse=dither=%s", fps, scaleCmd, dither);
   if(ffmpeg_ps) ffmpeg_ps.kill();
   ffmpeg_ps = spawn(ffmpeg_path, [
+    "-ss", startTime,
+    "-t", endTime-startTime,
     "-i", input,
     "-i", "pipe:0",
     "-lavfi", vf,
